@@ -1,5 +1,6 @@
 package telran.utils;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -64,9 +65,13 @@ public class Arrays {
 	}
 
 	public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
-		// TODO
-		// removes all elements of array matching a given predicate
-		return null;
+		ArrayList<T> result = new ArrayList<>();
+		for(T element : array) {
+			if(!predicate.test(element)) {
+				result.add(element);
+			}
+		}
+        return result.toArray(java.util.Arrays.copyOf(array, result.size()));
 	}
 
 	public static <T> T[] search(T[] array, Predicate<T> predicate) {

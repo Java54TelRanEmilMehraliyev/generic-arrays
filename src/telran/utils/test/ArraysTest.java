@@ -3,7 +3,9 @@ package telran.utils.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -80,7 +82,16 @@ String[] stringsMin = {"abc", "lmn", "123",  "y"};
 	}
 	 @Test
 	 void removeIfTest() {
-		 //TODO
+		 Integer[]array = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 24, 35};
+		 Predicate<Integer>predicate = x -> x % 2 == 0;
+		 Integer[]result = Arrays.removeIf(array, predicate);
+		 for(Integer num : result) {
+			 assertFalse(num % 2 == 0);
+		 }
+			 for(Integer num : array) {
+	            if(!predicate.test(num)) {
+	            	assertTrue(java.util.Arrays.asList(result).contains(num));
+	            }
+		 }
 	 }
-
 }
