@@ -1,5 +1,6 @@
 package telran.utils;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -71,7 +72,10 @@ public class Arrays {
 				result.add(element);
 			}
 		}
-        return result.toArray(java.util.Arrays.copyOf(array, result.size()));
+		@SuppressWarnings("unchecked")
+	T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), result.size());
+        result.toArray(newArray);
+		return newArray;
 	}
 
 	public static <T> T[] search(T[] array, Predicate<T> predicate) {
