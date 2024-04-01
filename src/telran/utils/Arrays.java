@@ -66,16 +66,7 @@ public class Arrays {
 	}
 
 	public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
-		ArrayList<T> result = new ArrayList<>();
-		for(T element : array) {
-			if(!predicate.test(element)) {
-				result.add(element);
-			}
-		}
-		@SuppressWarnings("unchecked")
-	T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), result.size());
-        result.toArray(newArray);
-		return newArray;
+       return search(array, e-> !predicate.test(e));
 	}
 
 	public static <T> T[] search(T[] array, Predicate<T> predicate) {
